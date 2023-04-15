@@ -1,0 +1,38 @@
+.details__comments {
+    width: 100%;
+    border: 1px solid #eeeeee;
+    padding: 50px; 
+    box-sizing: border-box;
+    margin: 50px 0;
+    box-shadow: 1px 1px 10px #e7e7e7;
+}
+
+.details__comments__new {
+    border-bottom: 1px solid #dbdbdb;
+    position: relative;
+
+    div {
+        border: none;
+        outline: none;
+        width: 100%;
+        padding: 10px;
+        padding-right: 50px;
+
+        &:empty:before {
+            content: attr(data-placeholder);
+            color: gray
+        }
+    }
+
+    button {
+        border: none;
+        background-color: transparent;
+        position: absolute;
+        right: 5px;
+        top: 0px;
+    }
+}
+
+.details__comments__old {
+    margin-top: 50px;
+}
