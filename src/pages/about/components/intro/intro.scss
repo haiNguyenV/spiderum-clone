@@ -27,13 +27,15 @@
             color: #464646;
         }
 
-        div button {
+        div a {
             border: none;
             background-color: #2a2f32;
             color: #fff;
             border-radius: 15px;
-            padding: 8px 25px;
+            padding: 10px 30px;
             margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
         }
     }
 

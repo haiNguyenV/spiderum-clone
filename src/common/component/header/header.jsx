@@ -2,17 +2,28 @@ import React from 'react';
 import { CgFacebook } from 'react-icons/cg';
 import { AiFillYoutube, AiFillGithub } from 'react-icons/ai';
 import { HiShoppingCart, HiOutlineSearch } from 'react-icons/hi';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import './header.scss';
 import Banner from '../../assets/img/wideLogo.png';
 const Header = () => {
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const userName = localStorage.getItem('userName');
+
+    const handleLogout = () => {
+        localStorage.removeItem('userName');
+        navigate('/loginuser')
+    }
+
     return (
         <div className="header">
             <div className="header__left">
-                <div className="header__logo">
+                <NavLink to='/' className="header__logo">
                     <img src={Banner} />
-                </div>
+                </NavLink>
                 <div className="header__menu-left">
                     <ul>
                         <li><a href="https://www.facebook.com/Spiderum" target='_blank'><CgFacebook /></a></li>
@@ -26,9 +37,18 @@ const Header = () => {
                 <div className="header__menu-right">
                     <ul>
                         <li><button><HiOutlineSearch /></button></li>
-                        <li><NavLink to='about'>Liên hệ</NavLink></li>
-                        <li><NavLink to='#'>Đăng ký</NavLink></li>
-                        <li><NavLink to='#'>Đăng nhập</NavLink></li>
+                        <li><NavLink to='/about'>Liên hệ</NavLink></li>
+                        {
+                            (userName) ? 
+                            <>
+                                <li>Xin chào, {userName}!</li>
+                                <li><button onClick={handleLogout}>Đăng xuất</button></li>
+                            </> : 
+                            <>
+                                <li><NavLink to='#'>Đăng ký</NavLink></li>
+                                <li><NavLink to='loginuser'>Đăng nhập</NavLink></li>
+                            </>
+                        }
                     </ul>
                 </div>
             </div>

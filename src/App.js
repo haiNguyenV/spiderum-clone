@@ -5,6 +5,7 @@ import About from "./pages/about/about";
 import Details from "./pages/details/details";
 import ErrorPage from "./pages/noPage/noPage";
 import Login from "./pages/login/login";
+import LoginUser from "./pages/loginUser/loginUser";
 import Admin from "./pages/admin/admin";
 import PostList from "./pages/admin/components/postList/postList";
 import Statistic from "./pages/admin/components/statistic/statistic";
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "login",
     element: <Login />,
+  },
+  {
+    path: "loginuser",
+    element: <LoginUser />,
   },
   {
     path: "admin",

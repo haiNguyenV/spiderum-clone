@@ -1,15 +1,13 @@
 import React from "react";
 import './addnew.scss';
 import Header from '../common/header/header';
-import TinyCME from './components/tinycme';
+import AddForm from "./components/addFrom/addForm";
 
 const AddNew = () => {
   return (
     <div className="admin__addNew">
       <Header />
-      <div>
-        <TinyCME />
-      </div>
+      <AddForm />
     </div>
     ) 
     

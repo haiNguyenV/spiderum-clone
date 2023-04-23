@@ -1,5 +1,5 @@
 .postlist {
-    padding: 20px 30px;
+    padding: 20px 20px;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -69,7 +69,7 @@
     padding: 20px;
 
     h1 {
-        font-size: 30px;
+        font-size: 20px;
         text-transform: uppercase;
         color: #383838;
         margin-bottom: 20px;
@@ -79,18 +79,35 @@
         width: 100%;
     }
 
-    table, tr, th, td {
+    tr {
         border-bottom: 1px solid #e0e0e0;
-        border-collapse: collapse;
     }
 
     th, td {
-        padding: 10px;
         color: #464646;
+        margin: 15px 0;
     }
 
     th {
         font-weight: bold;
+    }
+
+    td:first-child, th:first-child {
+        text-align: center;
+        width: 50px;
+        margin-right: 50px;
+    }
+
+    td:nth-child(2) {
+        max-width: 300px;
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+
+    td:last-child, td:nth-child(5) {
+        text-align: center;
     }
 
     button {

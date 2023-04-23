@@ -11,8 +11,14 @@
     border: 1px solid #f1f1f1;
 
     div {
-        img {
-            max-width: 140px;
+        a {
+            text-decoration: none;
+            color: #000;
+
+            img {
+                max-width: 140px;
+                cursor: pointer;
+            }
         }
 
         &:first-child button {

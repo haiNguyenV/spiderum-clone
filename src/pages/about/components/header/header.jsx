@@ -9,7 +9,9 @@ const Header = () => {
     return (
         <div className='about__header'>
             <div>
-                <img src={Logo} alt="logo" />
+                <NavLink to='/'>
+                    <img src={Logo} alt="logo" />
+                </NavLink>
                 <button>Switch to English</button>
             </div>
             <div>

@@ -8,7 +8,7 @@ import { BsPersonAdd } from 'react-icons/bs';
 
 import './sidebar.scss';
 
-const Sidebar = () => {
+const Sidebar = ({authorAvatar}) => {
     return (
         <div className='details__sidebar'>
             <div className="details__sidebar__vote">
@@ -22,7 +22,7 @@ const Sidebar = () => {
 
             </div>
             <div className="details__sidebar__avartar">
-                <img src="https://www.gravatar.com/avatar/ae23936110564d12394ef0c187a4bd90?d=wavatar&f=y" alt="" />
+                <img src={authorAvatar} alt="avatar" />
                 <div>
                     <BsPersonAdd />
                 </div>

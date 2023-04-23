@@ -18,7 +18,7 @@ const Intro = () => {
                         Với kinh nghiệm 7 năm xây dựng cộng đồng, Spiderum Media tự tin là cầu nối vững chắc cho các tổ chức/doanh nghiệp và thế hệ trẻ.
                     </p>
                     <div>
-                        <button>Liên hệ với chúng tôi</button>
+                        <a href='#contact'>Liên hệ với chúng tôi</a>
                     </div>
                 </div>
             </div>

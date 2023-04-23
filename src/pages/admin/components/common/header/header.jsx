@@ -6,6 +6,14 @@ import adminLogo from '../../../../../common/assets/img/logo.png';
 import './header.scss';
 
 const Header = () => {
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login');
+    }
+
     return (
         <div className="poslist__header">
             <div className="postlist__logo">
@@ -18,7 +26,7 @@ const Header = () => {
             <div className="poslist__admin">
             <p>Xin chào, Hainv!</p>
             <img src={adminLogo} alt="logo" />
-            <button>Đăng xuất</button>
+            <button onClick={handleLogout}>Đăng xuất</button>
             </div>
         </div>
     );

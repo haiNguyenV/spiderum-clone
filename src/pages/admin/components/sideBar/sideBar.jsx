@@ -6,9 +6,9 @@ import './sideBar.scss';
 
 const SideBar = () => {
   return <div className="sidebar">
-      <div className="sidebar__item dashboardTag">
+      <NavLink to='/admin' className="sidebar__item dashboardTag">
         Dashboard
-      </div>
+      </NavLink>
       <div className="sidebar__item listpost">
         <NavLink to='/admin'>Danh sách bài viết</NavLink>
       </div>

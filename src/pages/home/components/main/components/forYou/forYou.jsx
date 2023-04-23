@@ -1,221 +1,69 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import './forYou.scss';
+import postServices from '../../../../../../common/api/postServices';
+import Paging from '../../../../../../common/component/pagination/pagination';
+import PostItem from './components/postItem';
+import {postsFetchAction} from '../../../../redux/homeAction';
 
 const ForYou = () => {
+    const posts = useSelector(state => state.posts.posts);
+    const dispatch = useDispatch();
+
+    // console.log(posts)
+
+    const [page, setPage] = useState(0);
+    const [totalPage, setTotalPage] = useState(0);
+
+    useEffect(() => {
+        dispatch(getPostFromAPI);
+    }, [page]);
+
+    const handlePageClicked = (page) => {
+        setPage(page - 1);
+    }
+
+    const getPostFromAPI = (dispatch) => {
+        postServices.getPosts(page, 10)
+        .then(response => {
+            setTotalPage(response.data.totalPages)
+            dispatch(postsFetchAction(response.data.content))
+        })
+        .catch(err => {
+            console.log(err.message);
+            alert('Rat tiec, da co loi xay ra')
+        })
+    }
+
     return (
         <div className='for-you'>
             <div className='for-you__title'>
                 <h1>Dành cho bạn</h1>
             </div>
             <div className='for-you__content'>
-                <div className='for-you__item'>
-                    <a href='#' className='for-you__img'>
-                        <img src="https://images.spiderum.com/sp-thumbnails/bceeee40d91111ed968979d94e8c3778.jpg" alt="topic image" />
-                    </a>
-                    <div className='for-you__text'>
-                        <a href='#' className='for-you__item__title'>  
-                            Bài thơ gây nhiều hiểu lầm nhất ở Mỹ
-                        </a>
-                        <p> Một chàng trai trẻ đang đi bộ qua một khu rừng thì đột nhiên đứng lại trước một ngã rẽ. Anh chàng do dự, điềm tĩnh... </p>
-                        <div className='for-you__item__bottom'>
-                            <div>
-                                <a href="#">
-                                    <img src="https://images.spiderum.com/sp-xs-avatar/2c1752a0bbc911ed963711cb41071ebb.jpeg" alt="" />
-                                    <h4>Smiley Mia</h4>
-                                </a>
-                                <span>12 Th4</span>
-                            </div>
-                            <p>
-                                10 phút đọc
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className='for-you__item'>
-                    <a href='#' className='for-you__img'>
-                        <img src="https://images.spiderum.com/sp-thumbnails/bceeee40d91111ed968979d94e8c3778.jpg" alt="topic image" />
-                    </a>
-                    <div className='for-you__text'>
-                        <a href='#' className='for-you__item__title'>  
-                            Bài thơ gây nhiều hiểu lầm nhất ở Mỹ
-                        </a>
-                        <p> Một chàng trai trẻ đang đi bộ qua một khu rừng thì đột nhiên đứng lại trước một ngã rẽ. Anh chàng do dự, điềm tĩnh... </p>
-                        <div className='for-you__item__bottom'>
-                            <div>
-                                <a href="#">
-                                    <img src="https://images.spiderum.com/sp-xs-avatar/2c1752a0bbc911ed963711cb41071ebb.jpeg" alt="" />
-                                    <h4>Smiley Mia</h4>
-                                </a>
-                                <span>12 Th4</span>
-                            </div>
-                            <p>
-                                10 phút đọc
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className='for-you__item'>
-                    <a href='#' className='for-you__img'>
-                        <img src="https://images.spiderum.com/sp-thumbnails/bceeee40d91111ed968979d94e8c3778.jpg" alt="topic image" />
-                    </a>
-                    <div className='for-you__text'>
-                        <a href='#' className='for-you__item__title'>  
-                            Bài thơ gây nhiều hiểu lầm nhất ở Mỹ
-                        </a>
-                        <p> Một chàng trai trẻ đang đi bộ qua một khu rừng thì đột nhiên đứng lại trước một ngã rẽ. Anh chàng do dự, điềm tĩnh... </p>
-                        <div className='for-you__item__bottom'>
-                            <div>
-                                <a href="#">
-                                    <img src="https://images.spiderum.com/sp-xs-avatar/2c1752a0bbc911ed963711cb41071ebb.jpeg" alt="" />
-                                    <h4>Smiley Mia</h4>
-                                </a>
-                                <span>12 Th4</span>
-                            </div>
-                            <p>
-                                10 phút đọc
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className='for-you__item'>
-                    <a href='#' className='for-you__img'>
-                        <img src="https://images.spiderum.com/sp-thumbnails/bceeee40d91111ed968979d94e8c3778.jpg" alt="topic image" />
-                    </a>
-                    <div className='for-you__text'>
-                        <a href='#' className='for-you__item__title'>  
-                            Bài thơ gây nhiều hiểu lầm nhất ở Mỹ
-                        </a>
-                        <p> Một chàng trai trẻ đang đi bộ qua một khu rừng thì đột nhiên đứng lại trước một ngã rẽ. Anh chàng do dự, điềm tĩnh... </p>
-                        <div className='for-you__item__bottom'>
-                            <div>
-                                <a href="#">
-                                    <img src="https://images.spiderum.com/sp-xs-avatar/2c1752a0bbc911ed963711cb41071ebb.jpeg" alt="" />
-                                    <h4>Smiley Mia</h4>
-                                </a>
-                                <span>12 Th4</span>
-                            </div>
-                            <p>
-                                10 phút đọc
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className='for-you__item'>
-                    <a href='#' className='for-you__img'>
-                        <img src="https://images.spiderum.com/sp-thumbnails/bceeee40d91111ed968979d94e8c3778.jpg" alt="topic image" />
-                    </a>
-                    <div className='for-you__text'>
-                        <a href='#' className='for-you__item__title'>  
-                            Bài thơ gây nhiều hiểu lầm nhất ở Mỹ
-                        </a>
-                        <p> Một chàng trai trẻ đang đi bộ qua một khu rừng thì đột nhiên đứng lại trước một ngã rẽ. Anh chàng do dự, điềm tĩnh... </p>
-                        <div className='for-you__item__bottom'>
-                            <div>
-                                <a href="#">
-                                    <img src="https://images.spiderum.com/sp-xs-avatar/2c1752a0bbc911ed963711cb41071ebb.jpeg" alt="" />
-                                    <h4>Smiley Mia</h4>
-                                </a>
-                                <span>12 Th4</span>
-                            </div>
-                            <p>
-                                10 phút đọc
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className='for-you__item'>
-                    <a href='#' className='for-you__img'>
-                        <img src="https://images.spiderum.com/sp-thumbnails/bceeee40d91111ed968979d94e8c3778.jpg" alt="topic image" />
-                    </a>
-                    <div className='for-you__text'>
-                        <a href='#' className='for-you__item__title'>  
-                            Bài thơ gây nhiều hiểu lầm nhất ở Mỹ
-                        </a>
-                        <p> Một chàng trai trẻ đang đi bộ qua một khu rừng thì đột nhiên đứng lại trước một ngã rẽ. Anh chàng do dự, điềm tĩnh... </p>
-                        <div className='for-you__item__bottom'>
-                            <div>
-                                <a href="#">
-                                    <img src="https://images.spiderum.com/sp-xs-avatar/2c1752a0bbc911ed963711cb41071ebb.jpeg" alt="" />
-                                    <h4>Smiley Mia</h4>
-                                </a>
-                                <span>12 Th4</span>
-                            </div>
-                            <p>
-                                10 phút đọc
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className='for-you__item'>
-                    <a href='#' className='for-you__img'>
-                        <img src="https://images.spiderum.com/sp-thumbnails/bceeee40d91111ed968979d94e8c3778.jpg" alt="topic image" />
-                    </a>
-                    <div className='for-you__text'>
-                        <a href='#' className='for-you__item__title'>  
-                            Bài thơ gây nhiều hiểu lầm nhất ở Mỹ
-                        </a>
-                        <p> Một chàng trai trẻ đang đi bộ qua một khu rừng thì đột nhiên đứng lại trước một ngã rẽ. Anh chàng do dự, điềm tĩnh... </p>
-                        <div className='for-you__item__bottom'>
-                            <div>
-                                <a href="#">
-                                    <img src="https://images.spiderum.com/sp-xs-avatar/2c1752a0bbc911ed963711cb41071ebb.jpeg" alt="" />
-                                    <h4>Smiley Mia</h4>
-                                </a>
-                                <span>12 Th4</span>
-                            </div>
-                            <p>
-                                10 phút đọc
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className='for-you__item'>
-                    <a href='#' className='for-you__img'>
-                        <img src="https://images.spiderum.com/sp-thumbnails/bceeee40d91111ed968979d94e8c3778.jpg" alt="topic image" />
-                    </a>
-                    <div className='for-you__text'>
-                        <a href='#' className='for-you__item__title'>  
-                            Bài thơ gây nhiều hiểu lầm nhất ở Mỹ
-                        </a>
-                        <p> Một chàng trai trẻ đang đi bộ qua một khu rừng thì đột nhiên đứng lại trước một ngã rẽ. Anh chàng do dự, điềm tĩnh... </p>
-                        <div className='for-you__item__bottom'>
-                            <div>
-                                <a href="#">
-                                    <img src="https://images.spiderum.com/sp-xs-avatar/2c1752a0bbc911ed963711cb41071ebb.jpeg" alt="" />
-                                    <h4>Smiley Mia</h4>
-                                </a>
-                                <span>12 Th4</span>
-                            </div>
-                            <p>
-                                10 phút đọc
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className='for-you__item'>
-                    <a href='#' className='for-you__img'>
-                        <img src="https://images.spiderum.com/sp-thumbnails/bceeee40d91111ed968979d94e8c3778.jpg" alt="topic image" />
-                    </a>
-                    <div className='for-you__text'>
-                        <a href='#' className='for-you__item__title'>  
-                            Bài thơ gây nhiều hiểu lầm nhất ở Mỹ
-                        </a>
-                        <p> Một chàng trai trẻ đang đi bộ qua một khu rừng thì đột nhiên đứng lại trước một ngã rẽ. Anh chàng do dự, điềm tĩnh... </p>
-                        <div className='for-you__item__bottom'>
-                            <div>
-                                <a href="#">
-                                    <img src="https://images.spiderum.com/sp-xs-avatar/2c1752a0bbc911ed963711cb41071ebb.jpeg" alt="" />
-                                    <h4>Smiley Mia</h4>
-                                </a>
-                                <span>12 Th4</span>
-                            </div>
-                            <p>
-                                10 phút đọc
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                {
+
+                    posts.map((item) => {
+                        const date = new Date(item.createdDate);
+                        const customDate = `${date.getDate()} Th${date.getMonth() + 1}`
+                        return <PostItem key={item.id}
+                            id={item.id}
+                            title={item.title}
+                            content={item.content}
+                            createdDate={customDate}
+                            imgUrl={item.coverImageUrl}
+                        />
+                    })
+                }
             </div>
+
+            <Paging 
+                page={page + 1}
+                totalPage = {totalPage}
+                onPageClick = {handlePageClicked}
+            />
         </div>
     );
 };
