@@ -1,3 +1,5 @@
+// @import url(../../assets/img/LogoHeader.png);
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -89,3 +91,55 @@
         }
     }
 }
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+   .header__menu-right {
+        ul {
+            li {
+                &:nth-child(2) {
+                    display: none;
+                }
+            }
+        }
+   }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+    .header__logo {
+        width: auto;
+
+        img {
+            content: url(../../assets/img/LogoHeader.png);
+        }
+    }
+
+    .header__menu-left {
+        display: none;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 1050px) {
+    .header {
+        padding: 15px;
+        
+        &__menu-left {
+            ul {
+                li {
+                    &:last-child {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+// /* Extra large devices (large laptops and desktops, 1200px and up) */
+// @media only screen and (min-width: 1200px) {
+    
+// }

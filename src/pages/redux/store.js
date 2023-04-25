@@ -2,12 +2,12 @@ import thunk from "redux-thunk";
 import { applyMiddleware, combineReducers, createStore } from "redux";
 
 import homeReducer from "../home/redux/homeReducer";
-import detailsPostReducer from "../details/redux/detailsReducer";
+import detailPostReducer from "../detail/redux/detailReducer";
 
 const store = createStore(
   combineReducers({
     posts: homeReducer,
-    detailsPost: detailsPostReducer,
+    detailPost: detailPostReducer,
   }),
   applyMiddleware(thunk)
 );

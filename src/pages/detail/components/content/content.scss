@@ -1,14 +1,14 @@
-.details__content {
+.detail__content {
     margin-top: 100px;
     width: 100%;
 }
 
-.details__content__title h1 {
+.detail__content__title h1 {
     font-size: 45px;
     color: #242424;
 }
 
-.details__content__author {
+.detail__content__author {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -37,7 +37,7 @@
     }
 }
 
-.details__content__banner {
+.detail__content__banner {
     width: 100%;
 
     img {
@@ -47,7 +47,7 @@
     }
 }
 
-.details__content__text {
+.detail__content__text {
     text-align: justify;
 
     img {

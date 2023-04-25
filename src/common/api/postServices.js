@@ -17,13 +17,13 @@ const getPosts = (page, size) => {
   );
 };
 
-const getDetailsPost = (postId) => {
+const getDetailPost = (postId) => {
   return axiosClient.get(API_PATH + `/${postId}`, getHeaderConfig());
 };
 
 const postServices = {
   getPosts,
-  getDetailsPost,
+  getDetailPost,
 };
 
 export default postServices;

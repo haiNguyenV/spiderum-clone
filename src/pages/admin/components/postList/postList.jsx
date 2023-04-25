@@ -62,6 +62,7 @@ const PostList = () => {
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getAdminPosts();
@@ -104,29 +105,18 @@ const PostList = () => {
   }
 
   //handle edit post
-  const handleEditPost = (id) => {
-    const post = {
-      title: 'edit content',
-      content: 'edit content',
-      coverImageUrl: 'http://contabo.foxcode.site:8085/api/v1/files/88ea3670d8be11ed968979d94e8c3778.png'
-    }
-    
-    postAdminServices.editPost(id, post)
-    .then(response => {
-      alert('edit success!');
-      getAdminPosts();
-    })
-    .catch(error => {
-      console.log(error);
-    })
+  const handleEditPost = (editId) => {
+      navigate('editpost', {
+            state: {
+                editId: editId
+            }
+      })
   }
 
   //handle when click on search(filter) button
   const handleFilterPosts = (info) => {
     postAdminServices.filterPosts(page, 10, info)
     .then((response) => {
-      alert('Filter success!')
-      console.log(response.data.content);
       setPosts(response.data.content)
     })
     .catch((error) => {

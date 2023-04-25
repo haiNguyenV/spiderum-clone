@@ -1,4 +1,4 @@
-.details__sidebar {
+.detail__sidebar {
     width: 150px;
     height: 300px;
     position: fixed;
@@ -7,7 +7,7 @@
     text-align: center;
 }
 
-.details__sidebar__vote {
+.detail__sidebar__vote {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,7 +23,7 @@
     }
 }
 
-.details__sidebar__avartar {
+.detail__sidebar__avartar {
     display: inline-block;
     position: relative;
     margin-bottom: 30px;
@@ -52,7 +52,7 @@
     }
 }
 
-.details__sidebar__saved {
+.detail__sidebar__saved {
     margin-bottom: 10px;
 
     button {
@@ -63,7 +63,7 @@
     }
 }
 
-.details__sidebar__comment {
+.detail__sidebar__comment {
     color: #727272;
     font-size: 12px;
 
@@ -75,7 +75,7 @@
     }
 }
 
-.details__sidebar__share {
+.detail__sidebar__share {
     button {
         border: none;
         background-color: transparent;

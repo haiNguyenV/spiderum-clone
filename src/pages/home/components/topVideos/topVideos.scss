@@ -62,3 +62,25 @@
         margin-left: 16px;
     }
 }
+
+
+/* Small devices (portrait tablets and large phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and down) */
+@media only screen and (max-width: 800px) {
+    .video__item {
+        max-width: 250px;
+        margin: 0  auto;
+    }
+}
+
+/* Large devices (laptops/desktops, 1050px and down) */
+@media only screen and (max-width: 1050px) {
+
+}
+
+/* Large devices (desktops, 1200px and down) */
+@media only screen and (max-width: 1200px) {
+
+}

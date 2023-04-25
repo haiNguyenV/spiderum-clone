@@ -6,11 +6,7 @@ const PostItem = ({id, title, content, imgUrl, createdDate}) => {
     const navigate = useNavigate();
 
     const handleNavigateToDetails = () => {
-        navigate('/details', {
-            state: {
-                id: id
-            }
-        })
+        navigate(`/detail/${id}`);
     }
 
     return (
@@ -20,7 +16,7 @@ const PostItem = ({id, title, content, imgUrl, createdDate}) => {
                 </button>
                 <div className='for-you__text'>
                     <button className='for-you__item__title' onClick={handleNavigateToDetails}>  
-                        {title}
+                        <p>{title}</p>
                     </button>
                     <p>{content}</p>
                     <div className='for-you__item__bottom'>

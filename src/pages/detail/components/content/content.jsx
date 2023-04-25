@@ -1,21 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRef, useContext } from 'react';
 import './content.scss';
+import { OsHeightCtxt } from '../../detailPost';
 
 const Content = ({title, authorImg, authorName, createdDate, content, banner}) => {
-
     const date = new Date(createdDate);
     const customDate = `${date.getDate()} tháng ${date.getMonth() + 1}`;
-    const parse = require('html-react-parser');
-    // parse(content);
+    const osHeightRef = useRef()
+    const osHeightCtxt = useContext(OsHeightCtxt);
 
-    const htm = <div>hello</div>
+    useEffect(() => {
+        osHeightCtxt.setOsHeight(osHeightRef.current.clientHeight)
+    }, [])
 
     return (
-        <div className="details__content">
-            <div className="details__content__title">
+        <div className="detail__content" ref={osHeightRef}> 
+            <div className="detail__content__title">
                 <h1>{title}</h1>
             </div>
-            <div className="details__content__author">
+            <div className="detail__content__author">
                 <div>
                     <img src={authorImg} alt={authorName}/>
                     <h4>{authorName}</h4>
@@ -25,11 +28,11 @@ const Content = ({title, authorImg, authorName, createdDate, content, banner}) =
                 </div>
             </div>
 
-            <div className="details__content__banner">
+            <div className="detail__content__banner">
                 <img src={banner} alt="" />
             </div>
 
-            <div className="details__content__text">
+            <div className="detail__content__text">
                 <p dangerouslySetInnerHTML={{__html: content}}></p>
             </div>
         </div>

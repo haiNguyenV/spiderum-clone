@@ -10,12 +10,15 @@ const getHeaderConfig = () => {
   };
 };
 
-const getComment = (postId) => {
-  axiosClient.get(API_PATH + `/${postId}`, getHeaderConfig());
+const getComment = (postId, page, size) => {
+  axiosClient.get(
+    API_PATH + `/${postId}?page=${page}&size=${size}`,
+    getHeaderConfig()
+  );
 };
 
-const postComment = (postId) => {
-  axiosClient.post(API_PATH + `/${postId}`, getHeaderConfig());
+const postComment = (postId, comment) => {
+  axiosClient.post(API_PATH + `/${postId}`, comment, getHeaderConfig());
 };
 
 const commentServices = {

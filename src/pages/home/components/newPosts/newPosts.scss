@@ -64,3 +64,26 @@
 
 }
 
+
+/* Small devices (portrait tablets and large phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and down) */
+@media only screen and (max-width: 800px) {
+
+}
+
+/* Large devices (laptops/desktops, 1050px and down) */
+@media only screen and (max-width: 1050px) {
+
+}
+
+/* Large devices (desktops, 1200px and down) */
+@media only screen and (max-width: 1200px) {
+    .new-posts__bottom {
+        p {
+            display: none;
+        }
+    }
+}
+

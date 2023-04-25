@@ -10,6 +10,10 @@ const getHeaderConfig = () => {
   };
 };
 
+const getPost = (postId) => {
+  return axiosClient.get(API_PATH + `/${postId}`);
+};
+
 //filter
 const filterPosts = (page, size, body) => {
   return axiosClient.post(
@@ -35,7 +39,7 @@ const deletePost = (postId) => {
 };
 
 const postAdminServices = {
-  // getPosts,
+  getPost,
   filterPosts,
   addPost,
   editPost,

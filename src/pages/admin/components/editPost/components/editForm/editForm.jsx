@@ -1,53 +1,63 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Editor } from '@tinymce/tinymce-react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import './addForm.scss';
+import './editForm.scss';
 import postAdminServices from '../../../../../../common/api/postAdminServices';
 import fileServices from '../../../../../../common/api/fileServices';
 
-const AddForm = () => {
-    const navigate = useNavigate();
+const EditForm = () => {
     const editorRef = useRef(null);
-    const title = useRef(null);
-    const bannerImg = useRef(null);
-    const [img, setImg] = useState();
+    const location = useLocation();
+    const navigate = useNavigate();
+    const editId = location.state.editId;
+    const [title, setTitle] = useState('');
+    const [bannerImg, setBannerImg] = useState('');
+    const [content, setContent] = useState('');
 
-    const handleAddNewPost = () => {
-        let data = new FormData();
-        data.append('image', img);
+    useEffect(() => {
+        postAdminServices.getPost(editId)
+        .then((response) => {
+            setTitle(response.data.title);
+            setContent(response.data.content);
+            setBannerImg(response.data.coverImageUrl)
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }, [])
 
 
-        const post = {
-            title: title.current.value,
-            content: editorRef.current.getContent(),
-            coverImageUrl: bannerImg.current.value
+    const handleEditPost = () => {
+        const content = editorRef.current.getContent();
+        const editPost = {
+            title: title,
+            content: content,
+            coverImageUrl: bannerImg
         }
 
-        postAdminServices.addPost(post)
-        .then(response => {
-            alert('thêm thành công!')
-            navigate('/admin');
-            console.log(response)
+        postAdminServices.editPost(editId, editPost)
+        .then((response) => {
+            alert('sửa thành công!');
+            navigate('/admin')
         })
-        .catch(err => {
-            alert('thêm thất bại')
-            console.log(err)
+        .catch((error) => {
+            alert('sửa thất bại!')
         })
     };
 
 
     return (
         <div>
-            <div className="admin__addnew__uploadForm">
+            <div className="admin__editForm">
                 <div>
-                    <span>tiêu đề: </span><input type="text" placeholder="Tiêu đề của bài viết" ref={title} />
+                    <span>tiêu đề: </span><input type="text" placeholder="Tiêu đề của bài viết" value={title} onChange={e => setTitle(e.target.value)}/>
                 </div>
                 <div className="imgFile">
                     <span>ảnh bìa: </span>
-                    <input type="text" name="" id="" placeholder='link hình ảnh cho bài viết' ref={bannerImg} />
+                    <input type="text" name="" id="" placeholder='link hình ảnh cho bài viết' value={bannerImg} onChange={e => setBannerImg(e.target.value)}/>
                     {/* <input type="file" name="img_file" id="" placeholder='banner'  onChange={e => setImg(e.target.files[0])} /> */}
                 </div>
             </div>
@@ -55,7 +65,7 @@ const AddForm = () => {
             <div>
                 <Editor
                     onInit={(evt, editor) => editorRef.current = editor}
-                    initialValue=""
+                    initialValue={content}
                     apiKey='747emkuln2y0ux19ok8m5sov64fianhiao5t03jvgfmkv24u'
                     init={{
                     height: 700,
@@ -70,10 +80,10 @@ const AddForm = () => {
                     ]
                     }}
                 />
-                <button onClick={handleAddNewPost} className="admin__addnew-btn">Thêm mới</button>
+                <button onClick={handleEditPost} className="admin__editPost-btn">Cập nhật bài viết</button>
             </div>
         </div>
     );
 };
 
-export default AddForm;
+export default EditForm;

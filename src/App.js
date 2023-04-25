@@ -1,8 +1,8 @@
-import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import "./App.css";
 import Home from "./pages/home/home";
 import About from "./pages/about/about";
-import Details from "./pages/details/details";
 import ErrorPage from "./pages/noPage/noPage";
 import Login from "./pages/login/login";
 import LoginUser from "./pages/loginUser/loginUser";
@@ -10,7 +10,9 @@ import Admin from "./pages/admin/admin";
 import PostList from "./pages/admin/components/postList/postList";
 import Statistic from "./pages/admin/components/statistic/statistic";
 import AddNew from "./pages/admin/components/addNew/addNew";
-import "./App.css";
+import EditPost from "./pages/admin/components/editPost/editPost";
+import DetailPost from "./pages/detail/detailPost";
+import Detail from "./pages/detail/detail";
 
 const router = createBrowserRouter([
   {
@@ -23,8 +25,12 @@ const router = createBrowserRouter([
     element: <About />,
   },
   {
-    path: "details",
-    element: <Details />,
+    path: "detail",
+    element: <Detail />,
+  },
+  {
+    path: "detail/:id",
+    element: <DetailPost />,
   },
   {
     path: "login",
@@ -49,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "addnew",
         element: <AddNew />,
+      },
+      {
+        path: "editpost",
+        element: <EditPost />,
       },
     ],
   },
